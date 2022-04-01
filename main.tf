@@ -79,8 +79,8 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
 }
 
 #SQL instance
-resource "google_sql_database_instance" "my-gcp-instance" {
-  name        = "my-gcp-instance"
+resource "google_sql_database_instance" "my-test-instance" {
+  name        = "my-test-instance"
   region        = "us-central1"
   database_version  = "MYSQL_5_6"
 
@@ -99,13 +99,13 @@ resource "google_sql_database_instance" "my-gcp-instance" {
 
 resource "google_sql_database" "database" {
   name    = "gcp-training"
-  instance  = google_sql_database_instance.my-gcp-instance.name
+  instance  = google_sql_database_instance.my-test-instance.name
   charset   = "utf8"
 }
 
 resource "google_sql_user" "users" {
   name    = "root"
-  instance  = google_sql_database_instance.my-gcp-instance.name
+  instance  = google_sql_database_instance.my-test-instance.name
   password  = "rootpass"
 }
 
